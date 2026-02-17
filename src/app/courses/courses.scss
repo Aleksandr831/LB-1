@@ -1,0 +1,29 @@
+.course-list {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+   gap: 20px;
+   margin-top: 20px;
+}
+
+.course-item {
+   background: white;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+   h3 {
+      color: #27ae60;
+      margin-top: 0;
+   }
+
+   a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #3498db;
+      text-decoration: none;
+
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+}
