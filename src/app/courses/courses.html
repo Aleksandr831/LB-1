@@ -1,5 +1,59 @@
 <section>
-   <h2>🔥 Популярные курсы</h2>
+   <h2>🔥 {{ pageTitle }}</h2>
+
+   <div class="demo-section">
+      <h3>1. Привязка к свойству элемента</h3>
+      <img [src]="courseImageUrl" [width]="imageWidth" [height]="imageHeight" alt="Курсы">
+      <p>Ширина картинки: {{ imageWidth }}px</p>
+   </div>
+
+   <div class="demo-section">
+      <h3>2. Привязка метода к событию</h3>
+      <button (click)="buttonClicked()">Нажми меня!</button>
+      @if (clickMessage) {
+      <p>{{ clickMessage }}</p>
+      }
+   </div>
+
+   <div class="demo-section">
+      <h3>3. Двусторонняя привязка и чат</h3>
+
+      <input [(ngModel)]="newComment" [placeholder]="inputPlaceholder" [maxLength]="inputMaxLength"
+         class="comment-input">
+
+      <button (click)="addComment()">Отправить</button>
+
+      <div class="comments-list">
+         @for (comment of comments; track $index) {
+         <p [class.special]="isSpecial && $first" [class.important]="isImportant && $index === 1"
+            [style.background-color]="commentBoxColor" [style.font-size]="commentBoxFontSize">
+            {{ comment }}
+         </p>
+         }
+      </div>
+
+      <p class="hint">Максимум символов: {{ inputMaxLength }}</p>
+   </div>
+
+   <div class="demo-section">
+      <h3>4. Привязка к CSS классу</h3>
+      <button (click)="toggleSpecial()">Переключить special</button>
+      <button (click)="toggleImportant()">Переключить important</button>
+
+      <p [class.special]="isSpecial">special класс: {{ isSpecial }}</p>
+      <p [class.important]="isImportant">important класс: {{ isImportant }}</p>
+   </div>
+
+   <div class="demo-section">
+      <h3>5. Привязка к стилю</h3>
+      <button (click)="changeColor('#ffeb3b')">Желтый</button>
+      <button (click)="changeColor('#ffcdd2')">Красный</button>
+      <button (click)="changeColor('#c8e6c9')">Зеленый</button>
+
+      <p [style.background-color]="commentBoxColor" [style.font-size]="commentBoxFontSize">
+         Цвет фона: {{ commentBoxColor }}
+      </p>
+   </div>
 
    <div class="course-list">
       <div class="course-item">

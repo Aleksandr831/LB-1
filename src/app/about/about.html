@@ -1,12 +1,37 @@
 <section>
-   <h2>💰 Курс: Личный бюджет</h2>
-   <p class="subtitle">4 недели • Старт 15 марта</p>
+   <h2>{{ pageTitle }}</h2>
 
-   <h3>Чему вы научитесь:</h3>
-   <ul>
-      <li>Вести учет доходов и расходов</li>
-      <li>Составлять личный финансовый план</li>
-      <li>Находить скрытые резервы в бюджете</li>
-      <li>Планировать крупные покупки</li>
-   </ul>
+   <div [ngSwitch]="courseType" class="course-type-info">
+      <p *ngSwitchCase="'all'">📚 Все курсы нашей платформы</p>
+      <p *ngSwitchCase="'popular'">🔥 Самые популярные курсы</p>
+      <p *ngSwitchCase="'new'">🆕 Новинки</p>
+      <p *ngSwitchDefault>Выберите категорию</p>
+   </div>
+
+   <div class="courses-grid">
+      <div *ngFor="let course of courses" class="course-card"
+         [ngStyle]="{'border-left': '4px solid ' + getRatingColor(course.rating)}"
+         [ngClass]="{'popular-course': course.isPopular, 'new-course': course.isNew}">
+
+         <div class="badges">
+            <span *ngIf="course.isPopular" class="badge popular">🔥 Популярный</span>
+            <span *ngIf="course.isNew" class="badge new">🆕 Новинка</span>
+         </div>
+
+         <h3>{{ course.name }}</h3>
+         <p>{{ course.description }}</p>
+
+         <div class="course-meta">
+            <span class="rating" [ngStyle]="{'color': getRatingColor(course.rating)}">
+               ★ {{ course.rating }}
+            </span>
+            <span class="price" [ngClass]="getPriceClass(course.price)">
+               {{ course.price }} ₽
+            </span>
+         </div>
+
+         <a *ngIf="course.id <= 2" [routerLink]="['/']" class="details-link">Подробнее →</a>
+         <span *ngIf="course.id > 2" class="soon-badge">Скоро</span>
+      </div>
+   </div>
 </section>
