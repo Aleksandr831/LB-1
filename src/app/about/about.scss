@@ -5,7 +5,7 @@ h2 {
    padding-bottom: 10px;
 }
 
-.course-type-info {
+.info-block {
    background: #f8f9fa;
    padding: 15px;
    border-radius: 8px;
@@ -14,112 +14,50 @@ h2 {
    color: #7f8c8d;
 }
 
+.demo-section {
+   background: #f0f7ff;
+   padding: 20px;
+   border-radius: 8px;
+   margin-bottom: 25px;
+   border: 1px dashed #3498db;
+
+   h3 {
+      margin-top: 0;
+      color: #2980b9;
+   }
+
+   button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 15px;
+
+      &:hover {
+         background: #2980b9;
+      }
+   }
+
+   .demo-then {
+      background: #d4edda;
+      color: #155724;
+      padding: 10px;
+      border-radius: 4px;
+   }
+
+   .demo-else {
+      background: #f8d7da;
+      color: #721c24;
+      padding: 10px;
+      border-radius: 4px;
+   }
+}
+
 .courses-grid {
    display: grid;
    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
    gap: 20px;
    margin-top: 20px;
-}
-
-.course-card {
-   background: white;
-   border-radius: 8px;
-   padding: 20px;
-   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-   transition: transform 0.3s;
-   position: relative;
-   border-left: 4px solid transparent;
-
-   &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-   }
-
-   &.popular-course {
-      background: linear-gradient(to bottom right, white, #fff9e6);
-      border: 1px solid #f1c40f;
-   }
-
-   &.new-course {
-      background: linear-gradient(to bottom right, white, #e8f5e9);
-      border: 1px solid #27ae60;
-   }
-
-   h3 {
-      color: #2c3e50;
-      margin: 10px 0;
-   }
-
-   .badges {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 10px;
-
-      .badge {
-         font-size: 12px;
-         padding: 4px 8px;
-         border-radius: 4px;
-
-         &.popular {
-            background: #f1c40f;
-            color: #2c3e50;
-         }
-
-         &.new {
-            background: #27ae60;
-            color: white;
-         }
-      }
-   }
-
-   .course-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 15px 0;
-
-      .rating {
-         font-weight: bold;
-         font-size: 18px;
-      }
-
-      .price {
-         font-weight: bold;
-         padding: 4px 10px;
-         border-radius: 4px;
-
-         &.low-price {
-            background: #e8f5e9;
-            color: #2e7d32;
-         }
-
-         &.medium-price {
-            background: #fff3e0;
-            color: #ef6c00;
-         }
-
-         &.high-price {
-            background: #ffebee;
-            color: #c62828;
-         }
-      }
-   }
-
-   .details-link {
-      display: inline-block;
-      color: #27ae60;
-      text-decoration: none;
-      font-weight: 500;
-
-      &:hover {
-         text-decoration: underline;
-      }
-   }
-
-   .soon-badge {
-      display: inline-block;
-      color: #7f8c8d;
-      font-style: italic;
-      font-size: 14px;
-   }
 }

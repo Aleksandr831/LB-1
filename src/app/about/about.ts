@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-
+import { CourseCardComponent } from '../course-card/course-card';
 @Component({
   selector: 'app-about',
-  imports: [CommonModule, RouterLink],
+  standalone: true,
+  imports: [CommonModule, CourseCardComponent],
   templateUrl: './about.html',
   styleUrl: './about.scss'
 })
 export class About {
   pageTitle: string = 'Все курсы платформы';
   courseType: string = 'all';
+  condition: boolean = true;
 
   courses: any[] = [
     {
@@ -60,15 +61,7 @@ export class About {
     }
   ];
 
-  getRatingColor(rating: number): string {
-    if (rating >= 4.8) return '#27ae60';
-    if (rating >= 4.5) return '#f39c12';
-    return '#e74c3c';
-  }
-
-  getPriceClass(price: number): string {
-    if (price >= 5000) return 'high-price';
-    if (price >= 3000) return 'medium-price';
-    return 'low-price';
+  toggle() {
+    this.condition = !this.condition;
   }
 }

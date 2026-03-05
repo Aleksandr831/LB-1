@@ -1,0 +1,26 @@
+<div class="course-card" [ngStyle]="{'border-left': '4px solid ' + getRatingColor(course.rating)}"
+   [ngClass]="{'popular-course': course.isPopular, 'new-course': course.isNew}">
+
+   <div class="badges">
+      <span *ngIf="course.isPopular" class="badge popular">🔥 Популярный</span>
+      <span *ngIf="course.isNew" class="badge new">🆕 Новинка</span>
+   </div>
+
+   <h3>{{ course.name }}</h3>
+   <p>{{ course.description }}</p>
+
+   <div class="course-meta">
+      <span class="rating" [ngStyle]="{'color': getRatingColor(course.rating)}">
+         ★ {{ course.rating }}
+      </span>
+      <span class="price" [ngClass]="getPriceClass(course.price)">
+         {{ course.price }} ₽
+      </span>
+   </div>
+
+   <div [ngSwitch]="course.id" class="action-area">
+      <span *ngSwitchCase="1">⭐ Базовый уровень</span>
+      <span *ngSwitchCase="2">🚀 Продвинутый уровень</span>
+      <span *ngSwitchDefault class="soon-badge">Скоро в продаже</span>
+   </div>
+</div>

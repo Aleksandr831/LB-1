@@ -10,9 +10,7 @@
    <div class="demo-section">
       <h3>2. Привязка метода к событию</h3>
       <button (click)="buttonClicked()">Нажми меня!</button>
-      @if (clickMessage) {
-      <p>{{ clickMessage }}</p>
-      }
+      <p *ngIf="clickMessage">{{ clickMessage }}</p>
    </div>
 
    <div class="demo-section">
@@ -24,12 +22,13 @@
       <button (click)="addComment()">Отправить</button>
 
       <div class="comments-list">
-         @for (comment of comments; track $index) {
-         <p [class.special]="isSpecial && $first" [class.important]="isImportant && $index === 1"
-            [style.background-color]="commentBoxColor" [style.font-size]="commentBoxFontSize">
+         <p *ngFor="let comment of comments; index as i" 
+            [class.special]="isSpecial && i === 0" 
+            [class.important]="isImportant && i === 1"
+            [style.background-color]="commentBoxColor" 
+            [style.font-size]="commentBoxFontSize">
             {{ comment }}
          </p>
-         }
       </div>
 
       <p class="hint">Максимум символов: {{ inputMaxLength }}</p>
