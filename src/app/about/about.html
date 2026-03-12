@@ -1,6 +1,13 @@
 <section>
    <h2>{{ pageTitle }}</h2>
 
+   <!-- Блок для ViewChild с шаблонной переменной -->
+   <div #infoBlock class="demo-section">
+      <h3>Демонстрация ViewChild:</h3>
+      <p>Этот блок мы получили через ViewChild и изменили его стили в коде</p>
+      <p>Фон стал зеленым, появилась зеленая рамка</p>
+   </div>
+
    <div [ngSwitch]="courseType" class="info-block">
       <ng-template ngSwitchCase="'all'">
          <p>📚 Все курсы нашей платформы</p>
@@ -26,8 +33,18 @@
       </ng-template>
    </div>
 
+   <h3>Все курсы (через CourseCard):</h3>
    <div class="courses-grid">
       <app-course-card *ngFor="let course of courses; index as i" [course]="course" [index]="i">
+         <span #extraContent class="extra-info" *ngIf="course.isPopular">⭐ Рекомендуем!</span>
       </app-course-card>
+   </div>
+
+   <h3>Информация о курсах (через CourseInfo с ng-content):</h3>
+   <div class="courses-info">
+      <app-course-info *ngFor="let course of courses" [course]="course">
+         <span class="extra-info" *ngIf="course.isPopular">🔥 Популярный курс!</span>
+         <span class="extra-info" *ngIf="course.isNew">🆕 Новинка!</span>
+      </app-course-info>
    </div>
 </section>

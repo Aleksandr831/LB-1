@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ContentChild, ElementRef, AfterContentInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,9 +8,20 @@ import { CommonModule } from '@angular/common';
   templateUrl: './course-card.html',
   styleUrl: './course-card.scss'
 })
-export class CourseCardComponent {
+export class CourseCardComponent implements AfterContentInit {
   @Input() course: any;
   @Input() index: number = 0;
+
+  @ContentChild('extraContent') extraContent!: ElementRef;
+
+  ngAfterContentInit() {
+    console.log('Дополнительный контент:', this.extraContent);
+    if (this.extraContent) {
+      this.extraContent.nativeElement.style.color = '#27ae60';
+      this.extraContent.nativeElement.style.fontWeight = 'bold';
+      this.extraContent.nativeElement.style.fontSize = '14px';
+    }
+  }
 
   getRatingColor(rating: number): string {
     if (rating >= 4.8) return '#27ae60';

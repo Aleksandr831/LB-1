@@ -1,39 +1,35 @@
 <section>
-   <h2>🔥 {{ pageTitle }}</h2>
+   <h2>🔥 {{ pageTitle }}</h2> <!-- 1. ИНТЕРПОЛЯЦИЯ -->
 
+   <!-- 2. ПРИВЯЗКА К СВОЙСТВУ ЭЛЕМЕНТА -->
    <div class="demo-section">
-      <h3>1. Привязка к свойству элемента</h3>
+      <h3>1. Привязка к свойству элемента (property binding)</h3>
       <img [src]="courseImageUrl" [width]="imageWidth" [height]="imageHeight" alt="Курсы">
-      <p>Ширина картинки: {{ imageWidth }}px</p>
+      <p>Ширина картинки: {{ imageWidth }}px (значение из компонента)</p>
    </div>
 
+   <!-- 3. ПРИВЯЗКА МЕТОДА К СОБЫТИЮ -->
    <div class="demo-section">
-      <h3>2. Привязка метода к событию</h3>
+      <h3>2. Привязка метода к событию (event binding)</h3>
       <button (click)="buttonClicked()">Нажми меня!</button>
       <p *ngIf="clickMessage">{{ clickMessage }}</p>
    </div>
 
+   <!-- 4. ДВУСТОРОННЯЯ ПРИВЯЗКА + ПРИВЯЗКА К АТРИБУТУ -->
    <div class="demo-section">
-      <h3>3. Двусторонняя привязка и чат</h3>
-
+      <h3>3. Двусторонняя привязка + привязка к атрибуту</h3>
       <input [(ngModel)]="newComment" [placeholder]="inputPlaceholder" [maxLength]="inputMaxLength"
          class="comment-input">
-
       <button (click)="addComment()">Отправить</button>
 
       <div class="comments-list">
-         <p *ngFor="let comment of comments; index as i" 
-            [class.special]="isSpecial && i === 0" 
-            [class.important]="isImportant && i === 1"
-            [style.background-color]="commentBoxColor" 
-            [style.font-size]="commentBoxFontSize">
-            {{ comment }}
-         </p>
+         <p *ngFor="let comment of comments; index as i">{{ comment }}</p>
       </div>
-
-      <p class="hint">Максимум символов: {{ inputMaxLength }}</p>
+      <p class="hint">Максимум символов: {{ inputMaxLength }} (привязка к атрибуту)</p>
+      <p class="hint">Текст в поле: "{{ newComment }}" (двусторонняя привязка)</p>
    </div>
 
+   <!-- 5. ПРИВЯЗКА К CSS КЛАССУ -->
    <div class="demo-section">
       <h3>4. Привязка к CSS классу</h3>
       <button (click)="toggleSpecial()">Переключить special</button>
@@ -43,6 +39,7 @@
       <p [class.important]="isImportant">important класс: {{ isImportant }}</p>
    </div>
 
+   <!-- 6. ПРИВЯЗКА К СТИЛЮ -->
    <div class="demo-section">
       <h3>5. Привязка к стилю</h3>
       <button (click)="changeColor('#ffeb3b')">Желтый</button>

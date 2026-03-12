@@ -1,17 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CourseCardComponent } from '../course-card/course-card';
+import { CourseInfo } from '../course-info/course-info';
+
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, CourseCardComponent],
+  imports: [
+    CommonModule,
+    CourseCardComponent,
+    CourseInfo
+  ],
   templateUrl: './about.html',
   styleUrl: './about.scss'
 })
-export class About {
+export class About implements AfterViewInit {
   pageTitle: string = 'Все курсы платформы';
   courseType: string = 'all';
   condition: boolean = true;
+
+  @ViewChild('infoBlock') infoBlock!: ElementRef;
 
   courses: any[] = [
     {
@@ -63,5 +71,13 @@ export class About {
 
   toggle() {
     this.condition = !this.condition;
+  }
+
+  ngAfterViewInit() {
+    console.log('Блок infoBlock:', this.infoBlock.nativeElement);
+    this.infoBlock.nativeElement.style.backgroundColor = '#e8f5e9';
+    this.infoBlock.nativeElement.style.border = '2px solid #27ae60';
+    this.infoBlock.nativeElement.style.padding = '15px';
+    this.infoBlock.nativeElement.style.borderRadius = '8px';
   }
 }
