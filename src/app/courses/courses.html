@@ -51,22 +51,12 @@
       </p>
    </div>
 
+   <!-- 7. СПИСОК КУРСОВ ИЗ СЕРВИСА (ВСЕ 5) -->
    <div class="course-list">
-      <div class="course-item">
-         <h3>💰 Личный бюджет</h3>
-         <p>Научитесь управлять деньгами и экономить без стресса</p>
+      <div class="course-item" *ngFor="let course of courses">
+         <h3>💰 {{ course.name }}</h3>
+         <p>{{ course.description }}</p>
          <a routerLink="/about">Подробнее →</a>
-      </div>
-
-      <div class="course-item">
-         <h3>🎯 Накопления и цели</h3>
-         <p>Как копить на мечту и не отказывать себе в удовольствиях</p>
-         <a routerLink="/contact">Подробнее →</a>
-      </div>
-
-      <div class="course-item">
-         <h3>📊 Кредиты и долги</h3>
-         <p>Скоро в продаже</p>
       </div>
    </div>
 </section>

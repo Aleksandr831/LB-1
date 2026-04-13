@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, DoCheck, AfterViewInit, AfterViewChecked, AfterContentInit, AfterContentChecked, SimpleChanges, Input } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, DoCheck, AfterViewInit, AfterViewChecked, AfterContentInit, AfterContentChecked, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-contact',
@@ -23,6 +23,10 @@ export class Contact implements OnInit, OnChanges, DoCheck, AfterViewInit, After
   ];
 
   counter: number = 0;
+
+  onPageClick(): void {
+    console.log('Клик по странице!');
+  }
 
   ngOnInit(): void {
     console.log('ngOnInit — компонент инициализирован');
