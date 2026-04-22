@@ -1,12 +1,100 @@
-<section (click)="onPageClick()">
-   <h2>🎯 Курс: Накопления и цели</h2>
-   <p class="subtitle">3 недели • Старт 1 апреля</p>
+<section>
+   <h2>🎯 Формы и валидация</h2>
 
-   <h3>Программа курса:</h3>
-   <ul>
-      <li>Подушка безопасности: сколько и где хранить</li>
-      <li>Инструменты накопления</li>
-      <li>Автоматизация сбережений</li>
-      <li>Инвестиции для начинающих</li>
-   </ul>
+   <!-- ========== РЕАКТИВНАЯ ФОРМА (АВТОРИЗАЦИЯ) ========== -->
+   <div class="form-container">
+      <h3>Форма авторизации (реактивная)</h3>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+         <div class="form-group">
+            <label>Email:</label>
+            <input type="email" formControlName="email" placeholder="example@mail.ru">
+            <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+               <span *ngIf="loginForm.get('email')?.hasError('required')">Email обязателен</span>
+               <span *ngIf="loginForm.get('email')?.hasError('email')">Введите корректный email</span>
+            </div>
+         </div>
+
+         <div class="form-group">
+            <label>Пароль:</label>
+            <input type="password" formControlName="password" placeholder="от 6 до 20 символов">
+            <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+               <span *ngIf="loginForm.get('password')?.hasError('required')">Пароль обязателен</span>
+               <span *ngIf="loginForm.get('password')?.hasError('minlength')">Минимум 6 символов</span>
+               <span *ngIf="loginForm.get('password')?.hasError('maxlength')">Максимум 20 символов</span>
+            </div>
+         </div>
+
+         <button type="submit" [disabled]="loginForm.invalid">Войти</button>
+      </form>
+
+      <div class="errors-list" *ngIf="loginErrors.length">
+         <h4>Ошибки:</h4>
+         <ul>
+            <li *ngFor="let error of loginErrors">{{ error }}</li>
+         </ul>
+      </div>
+   </div>
+
+   <!-- ========== ПРОИЗВОЛЬНАЯ ФОРМА (NgModule) ========== -->
+   <div class="form-container">
+      <h3>Регистрация пользователя (произвольная форма)</h3>
+
+      <form [formGroup]="userForm" (ngSubmit)="onUserFormSubmit()">
+         <div class="form-group">
+            <label>ФИО:</label>
+            <input type="text" formControlName="fio" placeholder="Иванов Иван Иванович">
+            <div class="error-message" *ngIf="userForm.get('fio')?.invalid && userForm.get('fio')?.touched">
+               <span *ngIf="userForm.get('fio')?.hasError('required')">ФИО обязательно</span>
+               <span *ngIf="userForm.get('fio')?.hasError('maxlength')">Максимум 100 символов</span>
+            </div>
+         </div>
+
+         <div class="form-group">
+            <label>Email:</label>
+            <input type="email" formControlName="email" placeholder="example@mail.ru">
+            <div class="error-message" *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+               <span *ngIf="userForm.get('email')?.hasError('required')">Email обязателен</span>
+               <span *ngIf="userForm.get('email')?.hasError('email')">Введите корректный email</span>
+            </div>
+         </div>
+
+         <div class="form-group">
+            <label>Телефон:</label>
+            <input type="tel" formControlName="phone" placeholder="+7 (999) 123-45-67">
+            <div class="error-message" *ngIf="userForm.get('phone')?.invalid && userForm.get('phone')?.touched">
+               <span *ngIf="userForm.get('phone')?.hasError('required')">Телефон обязателен</span>
+               <span *ngIf="userForm.get('phone')?.hasError('invalidPhone')">Введите корректный номер</span>
+            </div>
+         </div>
+
+         <div class="form-group">
+            <label>Дата:</label>
+            <input type="date" formControlName="date">
+            <div class="error-message" *ngIf="userForm.get('date')?.invalid && userForm.get('date')?.touched">
+               <span *ngIf="userForm.get('date')?.hasError('required')">Дата обязательна</span>
+               <span *ngIf="userForm.get('date')?.hasError('invalidDate')">Введите корректную дату</span>
+            </div>
+         </div>
+
+         <div class="form-group">
+            <label>Числовое поле (от 1 до 100):</label>
+            <input type="number" formControlName="number" placeholder="число от 1 до 100">
+            <div class="error-message" *ngIf="userForm.get('number')?.invalid && userForm.get('number')?.touched">
+               <span *ngIf="userForm.get('number')?.hasError('required')">Поле обязательно</span>
+               <span *ngIf="userForm.get('number')?.hasError('min')">Минимум 1</span>
+               <span *ngIf="userForm.get('number')?.hasError('max')">Максимум 100</span>
+            </div>
+         </div>
+
+         <button type="submit" [disabled]="userForm.invalid">Сохранить</button>
+      </form>
+
+      <div class="errors-list" *ngIf="userFormErrors.length">
+         <h4>Ошибки:</h4>
+         <ul>
+            <li *ngFor="let error of userFormErrors">{{ error }}</li>
+         </ul>
+      </div>
+   </div>
 </section>
