@@ -1,0 +1,45 @@
+<section>
+   <h2>📡 Работа с сервером (REST API)</h2>
+   <p>API: JSONPlaceholder (https://jsonplaceholder.typicode.com/posts)</p>
+
+   <div class="message error" *ngIf="errorMessage">{{ errorMessage }}</div>
+   <div class="message success" *ngIf="successMessage">{{ successMessage }}</div>
+   <div class="loading" *ngIf="loading">Загрузка...</div>
+
+   <!-- ФОРМА ДЛЯ ДОБАВЛЕНИЯ -->
+   <div class="form-container">
+      <h3>➕ Добавить новый курс</h3>
+
+      <div class="form-group">
+         <label>Название курса:</label>
+         <input type="text" [(ngModel)]="newItemTitle" placeholder="Введите название курса">
+      </div>
+
+      <div class="form-group">
+         <label>Описание курса:</label>
+         <input type="text" [(ngModel)]="newItemBody" placeholder="Введите описание">
+      </div>
+
+      <button (click)="addItem()" [disabled]="loading">➕ Добавить</button>
+   </div>
+
+   <!-- ВЫВОД ДАННЫХ -->
+   <div class="data-container">
+      <h3>📋 Список курсов</h3>
+
+      <div class="items-list" *ngIf="items.length > 0">
+         <div class="item-card" *ngFor="let item of items">
+            <div class="item-info">
+               <h4>📚 {{ item.title }}</h4>
+               <p><strong>ID:</strong> {{ item.id }}</p>
+               <p *ngIf="item.body"><strong>Описание:</strong> {{ item.body }}</p>
+            </div>
+            <button class="delete-btn" (click)="deleteItem(item.id)">🗑 Удалить</button>
+         </div>
+      </div>
+
+      <div class="empty" *ngIf="!loading && items.length === 0">
+         <p>Нет курсов. Добавьте новый курс через форму.</p>
+      </div>
+   </div>
+</section>
